@@ -1,12 +1,12 @@
 {
   "files": {
     "main.css": "/React-Pulse-Text/static/css/main.3729f750.chunk.css",
-    "main.js": "/React-Pulse-Text/build/main.2229ade4.js",
+    "main.js": "/React-Pulse-Text/build/main.62f77396.js",
     "runtime-main.js": "/React-Pulse-Text/build/bundle.47e562ce.js",
     "build/2.4689639f.js": "/React-Pulse-Text/build/2.4689639f.js",
     "build/2.4689639f.js.LICENSE.txt": "/React-Pulse-Text/build/2.4689639f.js.LICENSE.txt",
     "index.html": "/React-Pulse-Text/index.html",
-    "precache-manifest.1957100901b19d8b00e215138cf1aa14.js": "/React-Pulse-Text/precache-manifest.1957100901b19d8b00e215138cf1aa14.js",
+    "precache-manifest.892ee6106e0ce74a1273f9355cff7d59.js": "/React-Pulse-Text/precache-manifest.892ee6106e0ce74a1273f9355cff7d59.js",
     "service-worker.js": "/React-Pulse-Text/service-worker.js",
     "static/css/main.3729f750.chunk.css.map": "/React-Pulse-Text/static/css/main.3729f750.chunk.css.map"
   },
@@ -14,6 +14,6 @@
     "build/bundle.47e562ce.js",
     "build/2.4689639f.js",
     "static/css/main.3729f750.chunk.css",
-    "build/main.2229ade4.js"
+    "build/main.62f77396.js"
   ]
 }
