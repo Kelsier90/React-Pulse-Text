@@ -10,8 +10,10 @@
 
 # production
 /build
+/styleguide
 
 # misc
+.idea
 .DS_Store
 .env.local
 .env.development.local
