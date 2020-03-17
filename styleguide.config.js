@@ -10,6 +10,10 @@ module.exports = {
     },
     sections: [
         {
+            name: 'Introduction',
+            content: 'docs/Introduction.md'
+        },
+        {
             name: 'Install',
             content: 'docs/Install.md'
         },
