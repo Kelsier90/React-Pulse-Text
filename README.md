@@ -1,3 +1,5 @@
+![npm](https://img.shields.io/npm/v/react-pulse-text)
+
 # react-pulse-text
 
 ![Pulse Text](https://raw.githubusercontent.com/Kelsier90/React-Pulse-Text/master/src/logo.gif)
