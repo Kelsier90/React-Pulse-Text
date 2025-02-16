@@ -1,11 +1,11 @@
 {
   "name": "react-pulse-text",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b ./tsconfig.lib.json && vite build",
     "lint": "eslint react-pulse-text",
     "preview": "vite preview"
   },
@@ -15,6 +15,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
+    "@types/node": "^22.13.4",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
@@ -24,6 +25,7 @@
     "globals": "^15.14.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.22.0",
-    "vite": "^6.1.0"
+    "vite": "^6.1.0",
+    "vite-plugin-dts": "^4.5.0"
   }
 }
