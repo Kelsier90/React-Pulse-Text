@@ -1,10 +1,10 @@
-import { defineConfig } from 'vite'
-import { dirname, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url';
-import react from '@vitejs/plugin-react'
-import dts from 'vite-plugin-dts'
+import { defineConfig } from "vite";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
+import react from "@vitejs/plugin-react";
+import dts from "vite-plugin-dts";
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -15,10 +15,13 @@ export default defineConfig({
     }),
   ],
   build: {
-    lib: {
-      entry: resolve(__dirname, 'lib/main.ts'),
-      formats: ['es']
-    },
     copyPublicDir: false,
-  }
-})
+    lib: {
+      entry: resolve(__dirname, "lib/main.ts"),
+      formats: ["es"],
+    },
+    rollupOptions: {
+      external: ["react", "react/jsx-runtime"],
+    },
+  },
+});
