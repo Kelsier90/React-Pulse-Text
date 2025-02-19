@@ -1,5 +1,6 @@
 import PulseTextProps from "../types/PulseTextProps.ts";
 import { useCallback, useEffect, useRef, useState } from "react";
+import PulseTextReturn from "../types/PulseTextReturn.ts";
 
 export default function usePulseText({
   text,
@@ -12,7 +13,7 @@ export default function usePulseText({
   onStart,
   onChange,
   onEnd,
-}: PulseTextProps): string {
+}: PulseTextProps): PulseTextReturn {
   const CURRENT_TEXT_DEFAULT = "";
   const CURRENT_ITERATION_DEFAULT = 1;
 
@@ -156,5 +157,8 @@ export default function usePulseText({
     [stopInterval],
   );
 
-  return currentText;
+  return {
+    reset,
+    text: currentText,
+  };
 }
