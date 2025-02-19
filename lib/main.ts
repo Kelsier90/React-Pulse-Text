@@ -1,3 +1,3 @@
-export function usePulseText(text: string): string {
-    return `using react-pulse-text with ${text}!`
-}
+import usePulseText from "./hooks/usePulseText.ts";
+
+export default usePulseText;
