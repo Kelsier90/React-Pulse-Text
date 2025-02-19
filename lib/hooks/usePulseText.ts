@@ -27,7 +27,6 @@ export default function usePulseText({
   const isFinishedRef = useRef<boolean>(false);
   const currentIterationRef = useRef<number>(CURRENT_ITERATION_DEFAULT);
   const iterationTimeoutIdRef = useRef<any>(null);
-  const isIterationDelayedRef = useRef<boolean>(false);
 
   const onStartRef = useRef(onStart);
   const onChangeRef = useRef(onChange);
@@ -64,6 +63,13 @@ export default function usePulseText({
     }
   }, []);
 
+  const cancelIterationDelay = useCallback(() => {
+    if (iterationTimeoutIdRef.current) {
+      clearTimeout(iterationTimeoutIdRef.current);
+      iterationTimeoutIdRef.current = null;
+    }
+  }, []);
+
   const startInterval = useCallback(() => {
     if (!active || isFinishedRef.current || isRunning()) return;
 
@@ -74,8 +80,6 @@ export default function usePulseText({
         }
 
         intervalIdRef.current = setInterval(() => {
-          if (isIterationDelayedRef.current) return;
-
           const newText = getNewText();
           setCurrentText(newText);
           currentTextRef.current = newText;
@@ -91,15 +95,14 @@ export default function usePulseText({
             stopInterval();
             if (onEndRef.current) onEndRef.current();
           } else if (isIterationEnded()) {
+            currentIterationRef.current += 1;
+
             if (iterationDelay > 0) {
-              isIterationDelayedRef.current = true;
+              stopInterval();
 
               iterationTimeoutIdRef.current = setTimeout(() => {
-                isIterationDelayedRef.current = false;
-                currentIterationRef.current += 1;
+                startInterval();
               }, iterationDelay);
-            } else {
-              currentIterationRef.current += 1;
             }
           }
         }, duration / text.length);
@@ -120,7 +123,6 @@ export default function usePulseText({
 
     isStartedRef.current = false;
     isFinishedRef.current = false;
-    isIterationDelayedRef.current = false;
 
     startInterval();
   }, [startInterval, stopInterval]);
@@ -140,8 +142,11 @@ export default function usePulseText({
   // Play or pause it when the active prop changes
   useEffect(() => {
     if (active) startInterval();
-    else stopInterval();
-  }, [startInterval, stopInterval, active]);
+    else {
+      cancelIterationDelay();
+      stopInterval();
+    }
+  }, [active, cancelIterationDelay, startInterval, stopInterval]);
 
   // Reset when a prop is changed
   useEffect(() => {
@@ -151,10 +156,10 @@ export default function usePulseText({
   // Clear intervals and timeouts on unmount
   useEffect(
     () => () => {
+      cancelIterationDelay();
       stopInterval();
-      if (iterationTimeoutIdRef.current) clearInterval(iterationTimeoutIdRef.current);
     },
-    [stopInterval],
+    [cancelIterationDelay, stopInterval],
   );
 
   return {
