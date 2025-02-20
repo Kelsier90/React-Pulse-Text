@@ -1,6 +1,6 @@
-import PulseTextProps from "../types/PulseTextProps.ts";
+import PulseTextProps from "../types/PulseTextProps";
 import { useCallback, useEffect, useRef, useState } from "react";
-import PulseTextReturn from "../types/PulseTextReturn.ts";
+import PulseTextReturn from "../types/PulseTextReturn";
 
 export default function usePulseText({
   text,
