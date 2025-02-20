@@ -73,45 +73,48 @@ export default function usePulseText({
   const startInterval = useCallback(() => {
     if (!active || isFinishedRef.current || isRunning()) return;
 
-    timeoutIdRef.current = setTimeout(
-      () => {
+    const run = () => {
+      intervalIdRef.current = setInterval(() => {
         if (!isStartedRef.current) {
+          isStartedRef.current = true;
           if (onStartRef.current) onStartRef.current();
         }
 
-        intervalIdRef.current = setInterval(() => {
-          const newText = getNewText();
-          setCurrentText(newText);
-          currentTextRef.current = newText;
-          if (onChangeRef.current) {
-            onChangeRef.current({
-              text: newText,
-              iteration: currentIterationRef.current,
-            });
-          }
+        const newText = getNewText();
+        setCurrentText(newText);
+        currentTextRef.current = newText;
+        if (onChangeRef.current) {
+          onChangeRef.current({
+            text: newText,
+            iteration: currentIterationRef.current,
+          });
+        }
 
-          if (isOver()) {
-            isFinishedRef.current = true;
+        if (isOver()) {
+          isFinishedRef.current = true;
+          stopInterval();
+          if (onEndRef.current) onEndRef.current();
+        } else if (isIterationEnded()) {
+          currentIterationRef.current += 1;
+
+          if (iterationDelay > 0) {
             stopInterval();
-            if (onEndRef.current) onEndRef.current();
-          } else if (isIterationEnded()) {
-            currentIterationRef.current += 1;
 
-            if (iterationDelay > 0) {
-              stopInterval();
-
-              iterationTimeoutIdRef.current = setTimeout(() => {
-                startInterval();
-              }, iterationDelay);
-            }
+            iterationTimeoutIdRef.current = setTimeout(() => {
+              startInterval();
+            }, iterationDelay);
           }
-        }, duration / text.length);
+        }
+      }, duration / text.length);
 
-        timeoutIdRef.current = null;
-        isStartedRef.current = true;
-      },
-      isStartedRef.current ? 0 : delay,
-    );
+      timeoutIdRef.current = null;
+    };
+
+    if (!isStartedRef.current && delay > 0) {
+      timeoutIdRef.current = setTimeout(run, delay);
+    } else {
+      run();
+    }
   }, [active, isRunning, getNewText, text, duration, delay, isIterationEnded, isOver, stopInterval]);
 
   const reset = useCallback(() => {
