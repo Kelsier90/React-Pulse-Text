@@ -12,6 +12,7 @@ export default defineConfig({
     react(),
     dts({
       tsconfigPath: resolve(__dirname, "tsconfig.lib.json"),
+      exclude: ["**/*.test.d.ts"], // Exclude all `.test.d.ts` files
     }),
   ],
   build: {
