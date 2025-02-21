@@ -9,12 +9,13 @@ export default function usePulseText({
   iterationCount = 1,
   iterationDelay = 0,
   reverse = false,
+  erase = false,
   active = true,
   onStart,
   onChange,
   onEnd,
 }: PulseTextProps): PulseTextReturn {
-  const CURRENT_TEXT_DEFAULT = "";
+  const CURRENT_TEXT_DEFAULT = erase ? text : "";
   const CURRENT_ITERATION_DEFAULT = 1;
 
   const [currentText, setCurrentText] = useState<string>(CURRENT_TEXT_DEFAULT);
@@ -32,8 +33,17 @@ export default function usePulseText({
   const onChangeRef = useRef(onChange);
   const onEndRef = useRef(onEnd);
 
+  const eraseRef = useRef(erase);
+
   const isRunning = useCallback(() => timeoutIdRef.current !== null || intervalIdRef.current !== null, []);
-  const isIterationEnded = useCallback(() => currentTextRef.current === text, [text]);
+
+  const isIterationEnded = useCallback(() => {
+    if (eraseRef.current) {
+      return currentTextRef.current.length === 0;
+    } else {
+      return currentTextRef.current.length === text.length;
+    }
+  }, [text]);
 
   const isOver = useCallback(
     () => currentIterationRef.current >= iterationCount && isIterationEnded(),
@@ -42,14 +52,23 @@ export default function usePulseText({
 
   const getNextLetter = useCallback(() => {
     if (isIterationEnded()) return "";
-    return reverse ? text[text.length - currentTextRef.current.length - 1] : text[currentTextRef.current.length];
+
+    if (reverse) {
+      return text[text.length - currentTextRef.current.length - 1];
+    } else {
+      return text[currentTextRef.current.length];
+    }
   }, [text, isIterationEnded, reverse]);
 
   const getNewText = useCallback(() => {
-    if (isIterationEnded()) return "";
-    const letter = getNextLetter();
-    return reverse ? letter + currentTextRef.current : currentTextRef.current + letter;
-  }, [getNextLetter, isIterationEnded, reverse]);
+    if (isIterationEnded()) return eraseRef.current ? text : "";
+    if (eraseRef.current) {
+      return reverse ? currentTextRef.current.slice(1) : currentTextRef.current.slice(0, -1);
+    } else {
+      const letter = getNextLetter();
+      return reverse ? letter + currentTextRef.current : currentTextRef.current + letter;
+    }
+  }, [text, getNextLetter, isIterationEnded, reverse]);
 
   const stopInterval = useCallback(() => {
     if (timeoutIdRef.current) {
@@ -142,10 +161,15 @@ export default function usePulseText({
     onEndRef.current = onEnd;
   }, [onEnd]);
 
+  useEffect(() => {
+    eraseRef.current = erase;
+  }, [erase]);
+
   // Play or pause it when the active prop changes
   useEffect(() => {
     if (active) startInterval();
     else {
+      cancelIterationDelay();
       cancelIterationDelay();
       stopInterval();
     }

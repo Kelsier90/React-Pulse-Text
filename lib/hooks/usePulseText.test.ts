@@ -209,6 +209,252 @@ describe("usePulseText", () => {
     expect(result.current.text).toBe("");
   });
 
+  test("should erase text letter by letter if `erase` is true", () => {
+    const { result } = renderHook(() =>
+      usePulseText({
+        text: "Hello",
+        duration: 1000,
+        erase: true,
+        active: true,
+      }),
+    );
+
+    // Initially, the text should be fully rendered
+    expect(result.current.text).toBe("Hello");
+
+    // Simulate erasing the text
+    act(() => {
+      jest.advanceTimersByTime(200); // Start erasing
+    });
+    expect(result.current.text).toBe("Hell");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Continue erasing
+    });
+    expect(result.current.text).toBe("Hel");
+
+    act(() => {
+      jest.advanceTimersByTime(600); // Finish erasing
+    });
+    expect(result.current.text).toBe("");
+  });
+
+  test("should leave text fully rendered if `erase` is false", () => {
+    const { result } = renderHook(() =>
+      usePulseText({
+        text: "Hello",
+        duration: 1000,
+        erase: false,
+        active: true,
+      }),
+    );
+
+    // Simulate text rendering (each letter takes part of duration)
+    act(() => {
+      jest.advanceTimersByTime(200); // First letter
+    });
+    expect(result.current.text).toBe("H");
+
+    act(() => {
+      jest.advanceTimersByTime(800); // Text is fully rendered
+    });
+    expect(result.current.text).toBe("Hello");
+
+    act(() => {
+      jest.advanceTimersByTime(1000); // Check if text remains after render
+    });
+    expect(result.current.text).toBe("Hello");
+  });
+
+  test("should immediately start erasing text if active is set to true after rendering", () => {
+    const { result, rerender } = renderHook(
+      ({ active }) =>
+        usePulseText({
+          text: "Hello",
+          duration: 1000,
+          erase: true,
+          active,
+        }),
+      {
+        initialProps: { active: false },
+      },
+    );
+
+    // Fully render the text
+    act(() => {
+      jest.advanceTimersByTime(500);
+    });
+    expect(result.current.text).toBe("Hello");
+
+    // Now, toggle `active` to true
+    rerender({ active: true });
+
+    // Erase text immediately
+    act(() => {
+      jest.advanceTimersByTime(200); // Start erasing
+    });
+    expect(result.current.text).toBe("Hell");
+
+    act(() => {
+      jest.advanceTimersByTime(800); // Continue erasing
+    });
+    expect(result.current.text).toBe(""); // Fully erased
+  });
+
+  test("should immediately start erasing text if `erase` is set to true after rendering", () => {
+    const { result, rerender } = renderHook(
+      ({ erase }) =>
+        usePulseText({
+          text: "Hello",
+          duration: 1000,
+          erase,
+          active: true,
+        }),
+      {
+        initialProps: { erase: false },
+      },
+    );
+
+    // Simulate full text rendering
+    act(() => {
+      jest.advanceTimersByTime(200); // 'H'
+    });
+    expect(result.current.text).toBe("H");
+
+    act(() => {
+      jest.advanceTimersByTime(400); // 'Hel'
+    });
+    expect(result.current.text).toBe("Hel");
+
+    // Toggle `erase` to true
+    rerender({ erase: true });
+
+    // Start erasing one letter at a time
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove last letter: 'He'
+    });
+    expect(result.current.text).toBe("He");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove next letter: 'H'
+    });
+    expect(result.current.text).toBe("H");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Continue erasing
+    });
+    expect(result.current.text).toBe(""); // Fully erased
+  });
+
+  test("should start with full text and remove the first letter per tick when `erase` and `reverse` are true", () => {
+    const { result } = renderHook(() =>
+      usePulseText({
+        text: "Hello",
+        duration: 1000,
+        reverse: true, // Render text in reverse
+        erase: true, // Erase from the beginning
+        active: true,
+      }),
+    );
+
+    // Initially, the text should be fully rendered
+    expect(result.current.text).toBe("Hello");
+
+    // Process each tick => Remove the first letter instead of the last
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove 'H'
+    });
+    expect(result.current.text).toBe("ello");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove 'e'
+    });
+    expect(result.current.text).toBe("llo");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove 'l'
+    });
+    expect(result.current.text).toBe("lo");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove 'l'
+    });
+    expect(result.current.text).toBe("o");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove 'o'
+    });
+    expect(result.current.text).toBe("");
+  });
+
+  test("should start fully rendered on each iteration when `erase` is true", () => {
+    const { result } = renderHook(() =>
+      usePulseText({
+        text: "Hello",
+        duration: 1000,
+        erase: true,
+        iterationCount: 3,
+        iterationDelay: 500,
+        active: true,
+      }),
+    );
+
+    // First iteration: Text is fully rendered at the start
+    expect(result.current.text).toBe("Hello");
+
+    // Erase one letter per tick
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove 'o'
+    });
+    expect(result.current.text).toBe("Hell");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove 'l'
+    });
+    expect(result.current.text).toBe("Hel");
+
+    act(() => {
+      jest.advanceTimersByTime(600); // Complete erasure ('Hello' -> '')
+    });
+    expect(result.current.text).toBe("");
+
+    // After the first iteration, apply the `iterationDelay`
+    act(() => {
+      jest.advanceTimersByTime(700); // Delay before the second iteration starts
+    });
+
+    // Second iteration: Text is fully rendered again and starts erasing
+    expect(result.current.text).toBe("Hello");
+
+    act(() => {
+      jest.advanceTimersByTime(200); // Remove 'o'
+    });
+    expect(result.current.text).toBe("Hell");
+
+    act(() => {
+      jest.advanceTimersByTime(800); // Complete erasure ('Hello' -> '')
+    });
+    expect(result.current.text).toBe("");
+
+    // After the second iteration, apply the `iterationDelay`
+    act(() => {
+      jest.advanceTimersByTime(700); // Delay before the third and final iteration starts
+    });
+
+    // Third iteration: Text is fully rendered again and starts erasing
+    expect(result.current.text).toBe("Hello");
+
+    act(() => {
+      jest.advanceTimersByTime(1000); // Erase the text completely during the last iteration
+    });
+    expect(result.current.text).toBe("");
+
+    act(() => {
+      jest.advanceTimersByTime(400); // The text is still empty
+    });
+    expect(result.current.text).toBe("");
+  });
+
   test("should reset text and iteration count when `reset` is called", () => {
     const { result } = renderHook(() =>
       usePulseText({

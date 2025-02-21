@@ -5,6 +5,7 @@ type PulseTextProps = {
   iterationCount?: number;
   iterationDelay?: number;
   reverse?: boolean;
+  erase?: boolean;
   active?: boolean;
   onStart?: () => void;
   onChange?: (state: { text: string; iteration: number }) => void;
