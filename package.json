@@ -47,9 +47,6 @@
     "vite-plugin-dts": "^4.5.0"
   },
   "lint-staged": {
-    "**/*": [
-      "prettier --write --ignore-unknown",
-      "npm run test"
-    ]
+    "**/*": "prettier --write --ignore-unknown"
   }
 }
