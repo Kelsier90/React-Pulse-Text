@@ -1,0 +1,6 @@
+.feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: calc(var(--grid-margin) / 2);
+}

@@ -1,0 +1,34 @@
+.root {
+  background-color: var(--dark-bg-color);
+}
+
+.container {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--grid-margin);
+}
+
+.heading {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.actions-container {
+  display: flex;
+  gap: var(--grid-margin);
+  align-items: center;
+  color: var(--text-color);
+}
+
+.color-scheme-button {
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.github-button {
+  color: inherit;
+}

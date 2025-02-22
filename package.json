@@ -64,5 +64,8 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
+  },
+  "dependencies": {
+    "wouter": "^3.6.0"
   }
 }

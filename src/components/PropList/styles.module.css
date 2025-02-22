@@ -1,0 +1,15 @@
+.root {
+  > li {
+    border-top: 1px solid var(--divider-color);
+
+    .header {
+      padding-top: 0.5rem;
+      display: flex;
+      gap: 1rem;
+    }
+
+    .name {
+      margin: 0;
+    }
+  }
+}

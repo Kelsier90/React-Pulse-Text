@@ -1,0 +1,4 @@
+.root {
+  margin-bottom: var(--grid-margin);
+  border-top: 1px solid var(--divider-color);
+}

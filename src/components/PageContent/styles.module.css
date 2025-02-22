@@ -1,0 +1,22 @@
+.container {
+  display: grid;
+  gap: var(--grid-margin);
+  grid-template-columns: 1fr auto;
+}
+
+.sections-container {
+  padding: 0 var(--grid-margin);
+  position: sticky;
+  top: 0;
+  align-self: start;
+  max-height: 100vh;
+  overflow-y: auto;
+
+  ul {
+    text-align: right;
+
+    & > li {
+      margin-bottom: 0.75rem;
+    }
+  }
+}

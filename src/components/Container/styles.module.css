@@ -1,0 +1,30 @@
+/* Base styles for the container */
+.root {
+  max-width: 1200px; /* Maximum width to prevent the container from getting too large */
+  margin: 0 auto; /* Centers the container on the page */
+  padding: 1rem; /* Adds padding for spacing */
+  width: 100%; /* Ensures the container takes up full width by default */
+  box-sizing: border-box; /* Includes padding and borders in the element's width/height */
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1024px) {
+  .root {
+    max-width: 850px; /* Adjust the width for devices with a maximum width of 1024px */
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .root {
+    max-width: 600px; /* Further adjust the width for smaller devices like tablets */
+    padding: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .root {
+    max-width: 100%; /* On very small devices like phones, make the container fluid */
+    padding: 0.5rem;
+  }
+}

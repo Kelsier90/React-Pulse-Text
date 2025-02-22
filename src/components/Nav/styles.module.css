@@ -1,0 +1,26 @@
+.root {
+  & > ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: var(--grid-margin);
+
+    & > li {
+      padding: 0.5rem;
+
+      & a {
+        color: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      & svg {
+        margin-left: 0.5rem;
+        width: 1rem;
+        height: 1rem;
+      }
+    }
+  }
+}

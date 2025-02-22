@@ -1,0 +1,40 @@
+.root {
+  background-color: var(--code-snippet-bg-color);
+  color: var(--code-snippet-text-color);
+  padding: 1rem;
+  border-radius: 4px;
+  position: relative;
+
+  & pre {
+    margin: 0;
+  }
+}
+
+.copy-button-container {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  display: none;
+}
+
+.root:hover .copy-button-container {
+  display: block;
+}
+
+.copy-button {
+  background-color: #5a5a5a;
+  color: #fff;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  height: 1.5rem;
+
+  &:hover {
+    background-color: #4a4a4a;
+  }
+
+  & svg {
+    width: 1rem;
+    height: 1rem;
+  }
+}
