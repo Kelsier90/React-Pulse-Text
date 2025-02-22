@@ -1,50 +1,76 @@
-# React + TypeScript + Vite
+# React Pulse Text
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The `usePulseText` hook is designed to create an animated text effect, where the content of a string progressively appears or disappears (erases) in a given pattern. This hook provides features such as specifying animation duration, delay, iteration count, and behavior like reversing the animation or erasing the text.
 
-Currently, two official plugins are available:
+It is well-suited for dynamic user interfaces to visually enhance text presentation by implementing pulsating or typing-like effects.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Features](#features)
+  - [Installation](#installation)
+    - [Using npm](#using-npm)
+    - [Using Yarn](#using-yarn)
+    - [Using pnpm](#using-pnpm)
+  - [Usage](#usage)
+  - [Contributing](#contributing)
+  - [License](#license)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **Text Animation**: The hook animates text by constructing it letter by letter over time, either forward or in reverse order.
+- **Erase Support**: It can display text character by character and erase it in a similar stepwise manner.
+- **Customizability**: Allows configuration for animation duration, delay, number of iterations, and iteration delay.
+- **Callbacks**: Provides notifications (`onStart`, `onChange`, `onEnd`) at various stages of the animation lifecycle.
+- **Control Props**: The animation can be toggled on/off with the `active` prop.
+- **Lightweight**: Minimal package size, keeping your project lean and efficient.
+- **No dependencies**: No additional libraries required, only specifying `react` as a peer dependency.
+- **TypeScript Support**: Fully typed for rich development experience.
+- **Ease of use**: Straightforward API for effortless integration.
 
-- Configure the top-level `parserOptions` property like this:
+## Installation
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+Install the package using your preferred package manager:
+
+### Using npm
+
+```bash
+npm install @kelsier90/react-pulse-text
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Using Yarn
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+```bash
+yarn add @kelsier90/react-pulse-text
 ```
+
+### Using pnpm
+
+```bash
+pnpm add @kelsier90/react-pulse-text
+```
+
+## Usage
+
+After installation, import and use the hook to animate texts in your React components.
+
+```jsx
+import React from "react";
+import { usePulseText } from "@kelsier90/react-pulse-text";
+
+const PulseTextExample = () => {
+  const { text } = usePulseText({
+    text: "Hello world!",
+    duration: 4000,
+  });
+
+  return <h1>{text}</h1>;
+};
+
+export default PulseTextExample;
+```
+
+## Contributing
+
+Contributions are welcome! Feel free to open an issue or submit a pull request on the [GitHub repository](https://github.com/Kelsier90/React-Pulse-Text).
+
+## License
+
+This package is licensed under the [MIT License](./LICENSE).
