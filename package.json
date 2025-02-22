@@ -1,9 +1,23 @@
 {
-  "name": "react-pulse-text",
-  "private": true,
+  "name": "@kelsier90/react-pulse-text",
+  "Author": "Rubén Albarracín",
+  "private": false,
   "version": "2.0.0",
   "type": "module",
   "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "default": "./dist/main.js"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kelsier90/React-Pulse-Text"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b ./tsconfig.lib.json && vite build",
@@ -13,11 +27,11 @@
     "prettier:check": "prettier . --check",
     "prettier:fix": "prettier . --write",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prepublishOnly": "npm run build"
   },
-  "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+  "peerDependencies": {
+    "react": ">=16.8.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.19.0",
@@ -39,6 +53,8 @@
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.4.3",
     "prettier": "3.5.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "typescript": "~5.7.2",
