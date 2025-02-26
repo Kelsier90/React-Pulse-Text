@@ -18,8 +18,19 @@
   --bg-color: #191940;
   --dark-bg-color: #111130;
   --divider-color: #404040;
+  --anchor-color: #42a3ed;
   --code-snippet-bg-color: #282828;
   --code-snippet-text-color: #fff;
+}
+
+[data-theme="light"] {
+  --text-color: rgba(19, 19, 19, 0.87);
+  --bg-color: #dedeef;
+  --dark-bg-color: #7e7eaa;
+  --divider-color: #cccccc;
+  --anchor-color: #0f7dcd;
+  --code-snippet-bg-color: #b1b1b1;
+  --code-snippet-text-color: #000000;
 }
 
 body {
@@ -33,7 +44,7 @@ body {
 
 a {
   font-weight: 500;
-  color: #42a3ed;
+  color: var(--anchor-color);
   text-decoration: inherit;
 }
 
@@ -59,4 +70,5 @@ ul {
 code {
   color: var(--code-snippet-text-color);
   background-color: var(--code-snippet-bg-color);
+  border-radius: 4px;
 }
