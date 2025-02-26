@@ -24,6 +24,8 @@
 }
 
 [data-theme="light"] {
+  color-scheme: light;
+
   --text-color: rgba(19, 19, 19, 0.87);
   --bg-color: #dedeef;
   --dark-bg-color: #7e7eaa;
