@@ -4,9 +4,12 @@
   padding: 1rem;
   border-radius: 4px;
   position: relative;
+  max-width: 100%;
+  overflow-x: auto;
 
   & pre {
     margin: 0;
+    white-space: pre-wrap;
   }
 }
 

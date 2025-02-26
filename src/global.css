@@ -10,10 +10,13 @@
 
   --grid-margin: 1.5rem;
 
+  @media screen and (max-width: 768px) {
+    --grid-margin: 1rem;
+  }
+
   --text-color: rgba(255, 255, 255, 0.87);
   --bg-color: #191940;
   --dark-bg-color: #111130;
-  --primary-color: #3482bc;
   --divider-color: #404040;
   --code-snippet-bg-color: #282828;
   --code-snippet-text-color: #fff;
@@ -49,6 +52,7 @@ button {
 
 ul {
   padding: 0;
+  margin: 0;
   list-style: none;
 }
 

@@ -4,7 +4,7 @@
     padding: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: var(--grid-margin);
+    gap: calc(var(--grid-margin) / 2);
 
     & > li {
       padding: 0.5rem;
@@ -21,6 +21,27 @@
         width: 1rem;
         height: 1rem;
       }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    display: none;
+    & > ul {
+      display: block;
+
+      & > li {
+        padding: calc(var(--grid-margin) / 2);
+        font-size: 1.25rem;
+        border-bottom: 1px solid var(--divider-color);
+        & a {
+          display: block;
+          justify-items: flex-start;
+        }
+      }
+    }
+
+    &.open {
+      display: block;
     }
   }
 }

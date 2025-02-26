@@ -2,6 +2,10 @@
   display: grid;
   gap: var(--grid-margin);
   grid-template-columns: 1fr auto;
+
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .sections-container {
@@ -17,6 +21,23 @@
 
     & > li {
       margin-bottom: 0.75rem;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    grid-row: 1;
+    padding: 0 0 var(--grid-margin) 0;
+    background-color: var(--bg-color);
+
+    ul {
+      text-align: left;
+      display: flex;
+      margin: 0;
+
+      & > li {
+        margin-bottom: 0;
+        margin-right: var(--grid-margin);
+      }
     }
   }
 }

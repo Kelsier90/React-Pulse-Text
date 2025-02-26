@@ -1,4 +1,8 @@
 .title {
   font-size: 3rem;
   font-weight: 700;
+
+  @media screen and (max-width: 425px) {
+    font-size: 2.25rem;
+  }
 }
