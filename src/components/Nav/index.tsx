@@ -6,19 +6,20 @@ import useScreenWidth from "../../hooks/useScreenWIdth.ts";
 type NavProps = {
   isOpen: boolean;
   className?: string;
+  onClose: () => void;
 };
 
-export default function Nav({ isOpen, className }: NavProps) {
+export default function Nav({ isOpen, className, onClose }: NavProps) {
   const screenWidth = useScreenWidth();
 
   return (
     <NavContext value={{ isOpen, isBurger: screenWidth <= 768 }}>
       <nav className={`${styles.root} ${isOpen ? styles.open : ""} ${className}`}>
         <ul>
-          <NavItem text="Getting started" href="/getting-started" />
-          <NavItem text="API" href="/api" />
-          <NavItem text="Playground" href="/playground" />
-          <NavItem text="Examples" href="/examples" />
+          <NavItem text="Getting started" href="/getting-started" onNavigate={onClose} />
+          <NavItem text="API" href="/api" onNavigate={onClose} />
+          <NavItem text="Playground" href="/playground" onNavigate={onClose} />
+          <NavItem text="Examples" href="/examples" onNavigate={onClose} />
         </ul>
       </nav>
     </NavContext>

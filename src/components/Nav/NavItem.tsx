@@ -7,7 +7,13 @@ import useRouteMatch from "../../hooks/useRouteMatch.ts";
 
 import styles from "./styles.module.css";
 
-export default function NavItem({ text, href }: { text: string; href: string }) {
+type NavItemProps = {
+  text: string;
+  href: string;
+  onNavigate: () => void;
+};
+
+export default function NavItem({ text, href, onNavigate }: NavItemProps) {
   const [isHovered, setIsHovered] = useState(false);
   const { isOpen, isBurger } = useContext(NavContext);
 
@@ -39,7 +45,7 @@ export default function NavItem({ text, href }: { text: string; href: string }) 
       onMouseLeave={() => setIsHovered(false)}
       className={isActive ? styles.active : undefined}
     >
-      <Link href={href}>
+      <Link href={href} onClick={onNavigate}>
         {animatedText || text} <ChevronRightIcon />
       </Link>
     </li>

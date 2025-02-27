@@ -23,7 +23,7 @@ export default function Header() {
           </button>
           <h1 className={styles.heading}>React Pulse Text</h1>
         </div>
-        <Nav isOpen={openMenu} className={styles.nav} />
+        <Nav isOpen={openMenu} className={styles.nav} onClose={() => setOpenMenu(false)} />
         <div className={styles["actions-container"]}>
           <button
             type="button"
