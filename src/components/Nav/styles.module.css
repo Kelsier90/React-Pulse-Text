@@ -16,6 +16,12 @@
         justify-content: center;
       }
 
+      &.active {
+        & a {
+          text-decoration: underline;
+        }
+      }
+
       & svg {
         margin-left: 0.5rem;
         width: 1rem;
