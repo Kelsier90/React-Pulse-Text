@@ -22,7 +22,7 @@ export default function PageContent({ heading, sections, children }: PageContent
 
     return (
       <aside className={styles["sections-container"]}>
-        <h3>On this page</h3>
+        <h3 className={styles["sections-title"]}>On this page</h3>
         <ul>
           {sections.map((section) => (
             <li key={section}>
