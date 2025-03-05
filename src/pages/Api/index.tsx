@@ -4,7 +4,7 @@ import ReturnSection from "./ReturnSection";
 
 export default function Api() {
   return (
-    <PageContent heading="API" sections={["Options", "Return"]}>
+    <PageContent heading="API reference" sections={["Options", "Return"]}>
       <OptionsSection />
       <ReturnSection />
     </PageContent>

@@ -17,9 +17,8 @@ export default function Nav({ isOpen, className, onClose }: NavProps) {
       <nav className={`${styles.root} ${isOpen ? styles.open : ""} ${className}`}>
         <ul>
           <NavItem text="Getting started" href="/getting-started" onNavigate={onClose} />
-          <NavItem text="API" href="/api" onNavigate={onClose} />
+          <NavItem text="API reference" href="/api-reference" onNavigate={onClose} />
           <NavItem text="Playground" href="/playground" onNavigate={onClose} />
-          <NavItem text="Examples" href="/examples" onNavigate={onClose} />
         </ul>
       </nav>
     </NavContext>

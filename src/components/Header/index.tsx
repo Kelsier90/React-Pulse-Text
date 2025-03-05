@@ -8,6 +8,7 @@ import useTheme from "../../hooks/useTheme.ts";
 import DarkIcon from "../icons/DarkIcon.tsx";
 
 import styles from "./styles.module.css";
+import Link from "../Link";
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -21,7 +22,9 @@ export default function Header() {
           <button type="button" onClick={() => setOpenMenu((v) => !v)} className={styles["menu-button"]}>
             <MenuIcon />
           </button>
-          <h1 className={styles.heading}>React Pulse Text</h1>
+          <h1 className={styles.heading}>
+            <Link href="/">React Pulse Text</Link>
+          </h1>
         </div>
         <Nav isOpen={openMenu} className={styles.nav} onClose={() => setOpenMenu(false)} />
         <div className={styles["actions-container"]}>
