@@ -38,7 +38,7 @@ export default function Header() {
             className={styles["github-button"]}
             target="_blank"
             rel="noopener noreferrer"
-            title="Github"
+            title="GitHub"
           >
             <GitHubIcon />
           </a>

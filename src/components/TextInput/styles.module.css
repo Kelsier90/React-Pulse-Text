@@ -1,0 +1,19 @@
+.root {
+  margin-bottom: calc(var(--grid-margin) / 2);
+
+  label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+  }
+
+  input {
+    border: 1px solid var(--divider-color);
+    background-color: var(--dark-bg-color);
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+  }
+}

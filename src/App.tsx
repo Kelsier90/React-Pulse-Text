@@ -4,6 +4,7 @@ import Route from "./components/Route";
 import GettingStarted from "./pages/GettingStarted";
 import Api from "./pages/Api";
 import ThemeProvider from "./components/ThemeProvider";
+import Playground from "./pages/Playground";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" component={GettingStarted} />
         <Route path="/getting-started" component={GettingStarted} />
         <Route path="/api" component={Api} />
+        <Route path="/playground" component={Playground} />
       </Switch>
     </ThemeProvider>
   );

@@ -1,0 +1,38 @@
+.root {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-gap: var(--grid-margin);
+
+  @media screen and (max-width: 425px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.renderer {
+  padding: var(--grid-margin);
+  border-radius: 8px;
+  border: 1px solid var(--divider-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--grid-margin);
+}
+
+.rendered-text {
+  font-size: 2rem;
+  display: block;
+  height: 2.25rem;
+}
+
+.renderer-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: calc(var(--grid-margin) / 3);
+}
+
+.toggle-code-button {
+  &.active {
+    background-color: var(--dark-bg-color);
+    border-radius: 5px;
+  }
+}

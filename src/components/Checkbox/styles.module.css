@@ -1,0 +1,15 @@
+.root {
+  display: flex;
+  align-items: center;
+  margin-bottom: calc(var(--grid-margin) / 2);
+
+  label {
+    font-weight: 500;
+    margin-left: 5px;
+  }
+
+  input {
+    width: 20px;
+    height: 20px;
+  }
+}

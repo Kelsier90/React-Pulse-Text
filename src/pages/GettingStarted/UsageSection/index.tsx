@@ -1,20 +1,9 @@
 import Section from "../../../components/Section";
 import CodeSnippet from "../../../components/CodeSnippet";
+import { getCode } from "../../../utils/code.ts";
 
 export default function UsageSection() {
-  const code = `import { usePulseText } from "@kelsier90/react-pulse-text";
-
-const PulseTextExample = () => {
-  const { text } = usePulseText({
-    text: "Hello world!",
-    duration: 4000,
-  });
-
-  return <h1>{text}</h1>;
-};
-
-export default PulseTextExample;
-`;
+  const code = getCode({ text: "React Pulse Text", duration: 2000 });
 
   return (
     <Section heading="Usage">
