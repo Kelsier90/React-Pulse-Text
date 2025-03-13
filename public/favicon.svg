@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .text {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    }
+    .caret {
+    font-family: monospace;
+    font-weight: bold;
+    }
+  </style>
+
+  <!-- Background -->
+  <rect width="32" height="32" rx="6" fill="#191940"/>
+
+  <!-- Text -->
+  <text x="15" y="20" text-anchor="middle" class="text" fill="#fff">Aa</text>
+
+  <!-- Caret -->
+  <text x="22" y="20" class="caret" fill="#fff">|</text>
+</svg>
