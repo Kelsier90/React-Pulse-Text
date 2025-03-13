@@ -4,7 +4,7 @@ The `usePulseText` hook is designed to create an animated text effect, where the
 
 It is well-suited for dynamic user interfaces to visually enhance text presentation by implementing pulsating or typing-like effects.
 
-Visit https://kelsier90.github.io/React-Pulse-Text/ for docs, API and playground.
+Visit https://kelsier90.github.io/React-Pulse-Text/ for **docs**, **API** and **playground**.
 
 - [Features](#features)
   - [Installation](#installation)

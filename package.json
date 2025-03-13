@@ -23,7 +23,7 @@
     "build:lib": "tsc -b ./tsconfig.lib.json && vite build --config vite.lib.config.ts",
     "build:docs": "tsc -b ./tsconfig.docs.json && vite build --config vite.docs.config.ts",
     "lint": "eslint react-pulse-text",
-    "preview": "vite preview",
+    "preview": "vite preview --config vite.docs.config.ts",
     "prepare": "husky",
     "prettier:check": "prettier . --check",
     "prettier:fix": "prettier . --write",
