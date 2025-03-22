@@ -6,6 +6,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@kelsier90/react-pulse-text.svg)](https://www.npmjs.com/package/@kelsier90/react-pulse-text)
 [![npm downloads](https://img.shields.io/npm/dm/@kelsier90/react-pulse-text.svg)](https://www.npmjs.com/package/@kelsier90/react-pulse-text)
+[![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40kelsier90%2Freact-pulse-text)](https://bundlephobia.com/package/@kelsier90/react-pulse-text)
 [![license](https://img.shields.io/npm/l/@kelsier90/react-pulse-text.svg)](https://github.com/Kelsier90/React-Pulse-Text/blob/main/LICENSE)
 
 ## ✨ Demo & Documentation
