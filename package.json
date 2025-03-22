@@ -2,7 +2,7 @@
   "name": "@kelsier90/react-pulse-text",
   "Author": "Rubén Albarracín",
   "private": false,
-  "version": "2.0.0",
+  "version": "2.0.1",
   "type": "module",
   "module": "./dist/main.js",
   "types": "./dist/main.d.ts",
